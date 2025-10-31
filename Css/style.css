@@ -985,3 +985,63 @@
     width: 100%;
   }
 }
+
+
+/* style.css */
+/* Conteneur des cartes */
+#mission-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* ✅ 2 cartes par ligne */
+  gap: 20px;
+  padding: 30px;
+
+}
+
+/* Style des cartes */
+.mission-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  padding:20px;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Image de la carte */
+.mission-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Texte */
+.mission-card h2 {
+  margin: 15px 0 10px;
+  color: #2c3e50;
+}
+
+.mission-card p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 14px;
+}
+.hero {
+  background-image: url('/Images/hero.png'); /* chemin vers ton image */
+  background-repeat: no-repeat;
+  background-size: cover;       /* couvre tout l’espace disponible */
+  background-position: center;  /* centre l’image */
+  height: 80vh;                /* occupe toute la hauteur de la fenêtre */
+  display: flex;                /* pour centrer le texte */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;                 /* couleur du texte */
+  text-align: center;
+}

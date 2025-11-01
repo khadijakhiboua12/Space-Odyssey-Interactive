@@ -29,7 +29,7 @@
     "agency": "NASA",
     "objective": "Exploration du cratère Gale sur Mars",
     "launchDate": "2011-11-26",
-    "image": "images/curiosity.jpg"
+    "image": "/Images/i3.png"
   },
   {
     "id": 5,
@@ -41,7 +41,7 @@
   },
   {
     "id": 6,
-    "name": "James Webb Space Telescope",
+    "name": "James Webb Space ",
     "agency": "NASA/ESA/CSA",
     "objective": "Observation de l’univers primitif",
     "launchDate": "2021-12-25",

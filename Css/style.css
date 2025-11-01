@@ -987,13 +987,16 @@
 }
 
 
+
 /* style.css */
 /* Conteneur des cartes */
 #mission-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* ✅ 2 cartes par ligne */
+  align-items: center;
   gap: 20px;
   padding: 30px;
+   width: 90%;
 
 }
 
@@ -1033,15 +1036,73 @@
   font-size: 14px;
 }
 .hero {
-  background-image: url('/Images/hero.png'); /* chemin vers ton image */
+  background-image: url('/Images/hero.png'); 
   background-repeat: no-repeat;
-  background-size: cover;       /* couvre tout l’espace disponible */
-  background-position: center;  /* centre l’image */
-  height: 80vh;                /* occupe toute la hauteur de la fenêtre */
-  display: flex;                /* pour centrer le texte */
+  background-size: cover;       
+  background-position: center;  
+  height: 80vh;                
+  display: flex;                
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;                 /* couleur du texte */
+  color: white;                 
   text-align: center;
+}
+
+/* Container de recherche et filtres */
+.mission-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top:20px;
+  margin-left: 300px;
+  flex-wrap: wrap;
+   width: 70%; 
+}
+
+
+/* Input recherche */
+.mission-controls .search {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+ 
+}
+
+/* Select filtres */
+.mission-controls select {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Boutons */
+.mission-controls .btn-search,
+.mission-controls .btn-add {
+  padding: 10px 20px;
+  border: none;
+  background-color: #0077ff;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s;
+}
+
+.mission-controls .btn-search:hover,
+.mission-controls .btn-add:hover {
+  background-color: #005fcc;
+}
+
+/* Icône dans le bouton Ajouter */
+.mission-controls .btn-add i {
+  font-size: 18px;
 }

@@ -1,88 +1,86 @@
-// // Charger le fichier JSON dynamiquement
-// fetch('missions.json')
-//   .then(response => response.json())
-//   .then(data => {
-//     afficherMissions(data);
-//     activerRechercheEtFiltres(data);
-//   })
-//   .catch(error => console.error("Erreur de chargement JSON :", error));
-
-// // Fonction pour afficher les cartes des missions
-// function afficherMissions(missions) {
-//   const container = document.querySelector(".parg77");
-//   container.innerHTML = ""; // vider avant d’ajouter
-
-//   missions.forEach(mission => {
-//     const card = document.createElement("div");
-//     card.classList.add("sect1");
-
-//     card.innerHTML = `
-//       <div class="sect2"><h1>${mission.name}</h1></div>
-//       <div class="i1"><img src="${mission.image}" alt="${mission.name}"></div>
-//       <div class="pg1">
-//         <p>
-//           <strong>Agency:</strong> ${mission.agency}<br>
-//           <strong>Objective:</strong> ${mission.objective}<br>
-//           <strong>Launch Date:</strong> ${mission.launchDate}
-//         </p>
-//       </div>
-//     `;
-//     container.appendChild(card);
-//   });
-// }
-
-// // === Recherche et filtrage dynamiques ===
-// function activerRechercheEtFiltres(missions) {
-//   const searchInput = document.getElementById("searchInput");
-//   const agencyFilter = document.getElementById("agencyFilter");
-//   const yearFilter = document.getElementById("yearFilter");
-
-//   function filtrer() {
-//     const searchText = searchInput.value.toLowerCase();
-//     const agency = agencyFilter.value.toLowerCase();
-//     const year = yearFilter.value;
-
-//     const filtered = missions.filter(mission => {
-//       const matchText =
-//         mission.name.toLowerCase().includes(searchText) ||
-//         mission.agency.toLowerCase().includes(searchText) ||
-//         mission.objective.toLowerCase().includes(searchText);
-
-//       const matchAgency = agency === "" || mission.agency.toLowerCase().includes(agency);
-//       const matchYear = year === "" || mission.launchDate.includes(year);
-
-//       return matchText && matchAgency && matchYear;
-//     });
-
-//     afficherMissions(filtered);
-//   }
-
-//   searchInput.addEventListener("input", filtrer);
-//   agencyFilter.addEventListener("change", filtrer);
-//   yearFilter.addEventListener("change", filtrer);
-// }
-
 "use strict";
 
-// Json Data Link------------------------
+/* -------------------------------------------------
+   🛰️ 1. Sélection des éléments HTML
+   ------------------------------------------------- */
+const missionsContainer = document.getElementById("mission-cards");
+const searchInput = document.querySelector(".search");
+const searchButton = document.querySelector(".btn-search");
+const filterAgency = document.querySelector(".filter-agency");
+const filterYear = document.querySelector(".filter-year");
+const filterType = document.querySelector(".filter-type");
+
+let allMissions = []; // 📋 Stockage global de toutes les missions
+
+/* -------------------------------------------------
+   🛰️ 2. Charger les missions depuis le JSON
+   ------------------------------------------------- */
 fetch("/js/missions.json")
-  .then((response) => response.json()) .then((data) => {
-    const missionsContainer = document.getElementById("mission-cards");
-    data.forEach((mission) => {
-    console.log(mission.launchDate);
+  .then(res => res.json())
+  .then(data => {
+    allMissions = data;
+    displayMissions(allMissions); // Affichage initial de toutes les missions
+  })
+  .catch(err => console.error("Erreur JSON:", err));
+
+/* -------------------------------------------------
+   🧱 3. Fonction d’affichage des missions
+   ------------------------------------------------- */
+function displayMissions(missions) {
+  missionsContainer.innerHTML = ""; // Vider le container
+
+  if (missions.length === 0) {
+    missionsContainer.innerHTML = "<p>Aucune mission trouvée 🚫</p>";
+    return;
+  }
+
+  missions.forEach(mission => {
     const card = document.createElement("div");
     card.classList.add("mission-card");
 
-      // ✅ Utilisation des backticks ``
     card.innerHTML = `
-        <img src="${mission.image}" alt="${mission.name}">
-        <h2>${mission.name}</h2>
-        <p>Agency: ${mission.agency}</p>
-        <p>Objective: ${mission.objective}</p>
-        <p>Launch Date: ${mission.launchDate}</p>
-      `;
+      <img src="${mission.image}" alt="${mission.name}">
+      <h2>${mission.name}</h2>
+      <p><strong>Agency:</strong> ${mission.agency}</p>
+      <p><strong>Objective:</strong> ${mission.objective}</p>
+      <p><strong>Launch Date:</strong> ${mission.launchDate}</p>
+      <p><strong>Type:</strong> ${mission.type || "N/A"}</p>
+    `;
 
-      missionsContainer.appendChild(card);
-    });
-  })
-  .catch((error) => console.error("Error fetching missions:", error));
+    missionsContainer.appendChild(card);
+  });
+}
+
+/* -------------------------------------------------
+   🔎 4. Fonction de recherche et filtrage avancé
+   ------------------------------------------------- */
+function filterMissions() {
+  const searchText = searchInput.value.toLowerCase();
+  const agencyValue = filterAgency.value;
+  const yearValue = filterYear.value;
+  const typeValue = filterType ? filterType.value : ""; // si pas de type
+
+  const filtered = allMissions.filter(mission => {
+    const matchesText =
+      mission.name.toLowerCase().includes(searchText) ||
+      mission.agency.toLowerCase().includes(searchText) ||
+      mission.objective.toLowerCase().includes(searchText) ||
+      mission.launchDate.toLowerCase().includes(searchText);
+
+    const matchesAgency = agencyValue === "" || mission.agency === agencyValue;
+
+    const missionYear = mission.launchDate.split("-")[0];
+    const matchesYear = yearValue === "" || missionYear === yearValue;
+
+    const matchesType = typeValue === "" || (mission.type && mission.type === typeValue);
+
+    return matchesText && matchesAgency && matchesYear && matchesType;
+  });
+
+  displayMissions(filtered);
+}
+
+/* -------------------------------------------------
+   🎧 5. Événement : recherche au clic
+   ------------------------------------------------- */
+searchButton.addEventListener("click", filterMissions);

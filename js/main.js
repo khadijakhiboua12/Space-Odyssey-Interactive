@@ -84,3 +84,116 @@ function filterMissions() {
    🎧 5. Événement : recherche au clic
    ------------------------------------------------- */
 searchButton.addEventListener("click", filterMissions);
+/*-----------------------------------------
+Pour les favoris
+------------------------------------------*/
+
+
+function toggleFavorite(mission, btnElement) {
+    // récupérer favoris depuis localStorage
+    let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+
+    const index = favoris.findIndex(fav => fav.name === mission.name);
+
+    if (index === -1) {
+        // ajouter aux favoris
+        favoris.push(mission);
+        btnElement.style.color = "gold"; // doré si ajouté
+        btnElement.innerHTML = `<i class="fa-solid fa-star"></i> Favori`;
+    } else {
+        // retirer des favoris
+        favoris.splice(index, 1);
+        btnElement.style.color = "";
+        btnElement.innerHTML = `<i class="fa-regular fa-star"></i> Ajouter aux favoris`;
+    }
+
+    // sauvegarder
+    localStorage.setItem("favoris", JSON.stringify(favoris));
+}
+//js pour afficher
+function displayMissions(missions) {
+  missionsContainer.innerHTML = "";
+
+  if (missions.length === 0) {
+    missionsContainer.innerHTML = "<p>Aucune mission trouvée 🚫</p>";
+    return;
+  }
+
+  missions.forEach(mission => {
+    const card = document.createElement("div");
+    card.classList.add("mission-card");
+
+    const favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+    const isFav = favoris.some(fav => fav.name === mission.name);
+
+    card.innerHTML = `
+      <img src="${mission.image}" alt="${mission.name}">
+      <h2>${mission.name}</h2>
+      <p><strong>Agency:</strong> ${mission.agency}</p>
+      <p><strong>Objective:</strong> ${mission.objective}</p>
+      <p><strong>Launch Date:</strong> ${mission.launchDate}</p>
+      <p><strong>Type:</strong> ${mission.type || "N/A"}</p>
+      <button class="btn-fav">
+        <i class="${isFav ? "fa-solid fa-star" : "fa-regular fa-star"}"></i>
+        ${isFav ? "Favori" : "Ajouter aux favoris"}
+      </button>
+    `;
+
+    const btnFav = card.querySelector(".btn-fav");
+    btnFav.addEventListener("click", () => toggleFavorite(mission, btnFav));
+
+    missionsContainer.appendChild(card);
+  });
+}
+"use strict";
+
+// Charger les missions depuis le JSON
+fetch('/js/missions.json')
+  .then(res => res.json())
+  .then(missions => {
+    const container = document.getElementById('mission_sec');
+    const btnFavoris = document.getElementById('btn-favoris');
+
+    if (!container || !btnFavoris) return;
+
+    // Récupérer les favoris depuis localStorage
+    function getFavoris() {
+      return JSON.parse(localStorage.getItem('favoris')) || [];
+    }
+
+    // Afficher uniquement les favoris
+    function displayFavoris() {
+      const favoris = getFavoris();
+      container.innerHTML = "";
+
+      if (favoris.length === 0) {
+        container.innerHTML = "<p>Aucun favori pour le moment.</p>";
+        return;
+      }
+
+      favoris.forEach(fav => {
+        const p = document.createElement('p');
+        p.textContent = fav.name;  // Affiche juste le nom
+        container.appendChild(p);
+      });
+    }
+
+    // Quand on clique sur le bouton
+    btnFavoris.addEventListener('click', () => {
+      displayFavoris();
+    });
+
+    // // Optionnel : afficher toutes les missions par défaut
+    // function displayMissions(list) {
+    //   container.innerHTML = "";
+    //   list.forEach(mission => {
+    //     const p = document.createElement('p');
+    //     p.textContent = mission.name;
+    //     container.appendChild(p);
+    //   });
+    // }
+
+    displayMissions(missions);
+
+  })
+  .catch(err => console.error("Erreur JSON :", err));

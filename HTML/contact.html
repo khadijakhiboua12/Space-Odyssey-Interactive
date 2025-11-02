@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/Css/style2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!--pour les icones-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"> 
 </head>
-
 <body>
     <header class="header">
         <div class="logo">
-            <img src="Images/logo1.png">
+            <img src="/Images/logo1.png">
         </div>
         <div class="header-content">
             <div class="form">
                 <input class="search" type="text" placeholder="Search">
-                <img class="icone2" src="Images/icon.png" alt="">
+                <img class="icone2" src="/Images/icon.png" alt="">
             </div>
 
             <div class="langage">
@@ -28,22 +25,20 @@
                 </select>
             </div>
 
-            <div class="notification"><img src="Images/notification.png">
+            <div class="notification"><img src="/Images/notification.png">
             </div>
 
-            <div class="profile"><img src="Images/profile.png">
+            <div class="profile"><img src="/Images/profile.png">
             </div>
 
         </div>
     </header>
-
     <navbar class="navbar">
         <div class="list1">
             <a href="#"><i class="fa-brands fa-instagram" id="a1"></i></a>
             <a href="#"><i class="fa-brands fa-behance" id="a1"></i></a>
             <a href="#"><i class="fa-brands fa-x-twitter" id="a1"></i></a>
         </div>
-
         <div class="list2">
             <div id="container">
                 <ul class="lien">
@@ -60,63 +55,48 @@
         </div>
         </div>
     </navbar>
+<section class="contenu">
+  <div class="container">
+    <h1>Formulaire de Contact</h1>
 
-<section class="section10">
-<div class="sect1">
-<div class="container_1">
-    <div class="h1">
-        <h1>Contact Us</h1>
-    </div>
-    <div class="p1"><p>Say something to start a live chat!</p>
-    </div>  
-<div class="container_2">
-    <div class="icone1"><img src="Images/bxs_phone-call.png"></div>
-    <div class="number"><p>+1012 3456 789</p></div>
-</div>
+    <form id="contactForm" novalidate>
 
-<div class="container_2">
-    <div class="icone1"><img src="Images/ic_sharp-email.png"></div>
-    <div class="number"><p>demo@gmail.com</p></div>
-</div>
-<div class="container_2" id="container_3">
-    <div class="icone1"><img src="Images/Group.png"></div>
-     <div class="icone1"><img src="Images/Group2.png"></div>
-   <div class="icone1"><img src="Images/discord.png"></div>
-</div>
-</div>
-
-<div class="container_4">
-
-    <div class="container_5">
-      <div class="First_Name"><label>First Name</label><hr></div>
-    
-      <div class="Last_Name"><label>Last Name</label><hr></div>
-      
+      <div class="form-group">
+        <label for="name">Nom complet *</label>
+        <input type="text" id="name" name="name" placeholder="Votre nom">
+        <small class="error-message"></small>
       </div>
-      <div class="container_6">
-      <div class="Email"><label>Email</label><hr></div> 
-      <div class="Phone_Number"><label>Phone Number</label><hr></div> 
-     
-</div>
-    <div class="container_7">
-        <h1>Select Subject?</h1>
-<div class="container_8">
-    <div ><input  type="radio" id="checkbox1"  value="General Inquiry"><label id="checkbox1">General Inquiry</label></div>
-       <div><input  type="radio" id="checkbox1"  value="General Inquiry"><label id="checkbox1">General Inquiry</label></div>
-       <div><input  type="radio" id="checkbox1"  value="General Inquiry"><label id="checkbox1">General Inquiry</lab></div>
-        <div><input  type="radio" id="checkbox1"  value="General Inquiry"><label id="checkbox1">General Inquiry</label></div>
-    </div>
-  
-</div>
- <div class="Message">Message</div> 
- <div class="Write_your_message" >Write your message.. <hr color="black" width="700px"></div>
-<dic class="Send Message"><button class="Send_Message">Send Message</button></dic>
-</div>
-    </section>
 
-    
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="text" id="email" name="email" placeholder="exemple@email.com">
+        <small class="error-message"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone *</label>
+        <input type="text" id="phone" name="phone" placeholder="+212">
+        <small class="error-message"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date de naissance *</label>
+        <input type="text" id="date" name="date" placeholder="JJ/MM/AAAA">
+        <small class="error-message"></small>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" placeholder="Votre message ici..."></textarea>
+        <small class="error-message"></small>
+      </div>
+
+      <button type="submit" class="submit">Envoyer</button>
+    </form>
+  </div>
+    </section>
     <section>
-        <!-- FOOTER -->
+        <footer>
         <div class="footer" id="fotertt">
             <div class="footer-content">
                 <div class="footer-top">
@@ -149,7 +129,7 @@
                 </div>
                 <div class="footer-bottom">
                     <div class="logo">
-                        <img src="Images/logo1.png" alt="" />
+                        <img src="/Images/logo1.png" alt="" />
                     </div>
                     <div class="footer-bottom-links">
                         <ul>
@@ -161,19 +141,21 @@
                     <div class="social-links">
                         <div class="social-links" style="background-color: black">
                             <a href="https://www.instagram.com/nasa/?hl=en" target="_blank"><img
-                                    src="Images/white-linkedin.png" alt="" /></a>
+                                    src="/Images/white-linkedin.png" alt="" /></a>
                             <a href="https://www.instagram.com/nasa/?hl=en" target="_blank"><img
-                                    src="Images/white-facebook1.png" alt="" /></a>
-                            <a href="https://x.com/NASA" target="_blank"><img src="Images/white-twitter1.png" alt="" /></a>
+                                    src="/Images/white-facebook1.png" alt="" /></a>
+                            <a href="https://x.com/NASA" target="_blank"><img src="/Images/white-twitter1.png" alt="" /></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- FOOTER -->
+       
 
+</footer>
+</section>
+     <script src="/js/main.js"></script>
 
-    </section>
 </body>
 
 </html>

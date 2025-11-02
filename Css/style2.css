@@ -358,3 +358,133 @@ position:absolute;
 #fotertt {
     margin-top: 40px;
 }
+
+
+
+
+/* ======== Style général ======== */
+.contenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  padding: 40px 0;
+}
+
+/* ======== Conteneur principal ======== */
+.container {
+  background: #fff;
+  color: #222;
+  width: 90%;
+  max-width: 500px;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+}
+
+/* ======== Titre ======== */
+.container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  color: #333;
+}
+
+/* ======== Champs du formulaire ======== */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #222;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Focus visuel */
+input:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* ======== États valides / invalides ======== */
+input.valid,
+textarea.valid {
+  border-color: #28a745;
+  background-color: #eafaf1;
+}
+
+input.invalid,
+textarea.invalid {
+  border-color: #dc3545;
+  background-color: #ffeaea;
+}
+
+/* ======== Message d’erreur ======== */
+.error-message {
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+  height: 16px;
+}
+
+/* ======== Bouton ======== */
+button {
+  width: 100%;
+  background: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #0056b3;
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px;
+  }
+
+  .container h1 {
+    font-size: 1.5em;
+  }
+
+  input,
+  textarea {
+    font-size: 14px;
+  }
+}

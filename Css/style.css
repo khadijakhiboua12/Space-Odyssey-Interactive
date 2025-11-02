@@ -1108,9 +1108,7 @@
 }
 .btn-fav i {
     margin-right: 5px;
-}
-  /* Style du bouton */
-  #btn-favoris {
+} #btn-favoris {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -1127,29 +1125,42 @@
 
   /* Conteneur menu favoris */
   .favoris-menu {
-    display: none; /* caché par défaut */
+    display: none;
     position: absolute;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-top: 5px;
-    min-width: 200px;
+    min-width: 220px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     z-index: 100;
+    max-height: 250px;
+    overflow-y: auto;
   }
 
   /* Chaque item du menu */
-  .favoris-menu p {
-    margin: 0;
+  .favoris-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 15px;
-    cursor: pointer;
     border-bottom: 1px solid #eee;
   }
 
-  .favoris-menu p:last-child {
+  .favoris-item:last-child {
     border-bottom: none;
   }
 
-  .favoris-menu p:hover {
+  .favoris-item:hover {
     background-color: #f0f0f0;
+  }
+
+  /* Bouton retirer */
+  .btn-remove {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
   }

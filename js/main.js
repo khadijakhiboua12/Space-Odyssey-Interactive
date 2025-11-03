@@ -52,6 +52,7 @@ function displayMissions(missions) {
         ${isFav ? "Favori" : "Ajouter aux favoris"}
       </button>
       <button class="btn-edit">Modifier</button>
+      <button class="btn-delete">Supprimer</button>
     `;
 
     const btnFav = card.querySelector(".btn-fav");
@@ -324,3 +325,15 @@ editForm.addEventListener("submit", e => {
   editForm.reset();
   editForm.style.display = "none";
 });
+
+//Fonction pour la supprimer
+const btnDelete = card.querySelector(".btn-delete");
+btnDelete.addEventListener("click", () => deleteMission(mission.id));
+
+function deleteMission(id) {
+  if (confirm("Êtes-vous sûr de vouloir supprimer cette mission ?")) {
+    allMissions = allMissions.filter(mission => mission.id !== id);
+    localStorage.setItem("missions", JSON.stringify(allMissions));
+    displayMissions(allMissions);
+  }
+}

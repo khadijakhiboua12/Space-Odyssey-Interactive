@@ -10,17 +10,32 @@ const filterAgency = document.querySelector(".filter-agency");
 const filterYear = document.querySelector(".filter-year");
 const filterType = document.querySelector(".filter-type");
 
-let allMissions = []; // 📋 Stockage global de toutes les missions
+let allMissions = JSON.parse(localStorage.getItem("missions")) || [];
+
+// Si localStorage vide, charger à partir du fichier missions.json
+if (allMissions.length === 0) {
+  fetch("/js/missions.json")
+    .then(response => response.json())
+    .then(data => {
+      allMissions = data;
+      localStorage.setItem("missions", JSON.stringify(allMissions));
+      displayMissions(allMissions);
+    })
+    .catch(error => console.error("Erreur de chargement JSON:", error));
+} else {
+  // Sinon, afficher celles du localStorage directement
+  displayMissions(allMissions);
+} 
 
 /* -------------------------------------------------
    🛰️ 2. Charger les missions depuis le JSON
 ------------------------------------------------- */
-fetch("/js/missions.json")
-  .then(res => res.json()) .then(data => {
-    allMissions = data;
-    displayMissions(allMissions); // Affichage initial de toutes les missions
-  })
-  .catch(err => console.error("Erreur JSON:", err));
+// fetch("/js/missions.json")
+//   .then(res => res.json()) .then(data => {
+//     allMissions = data;
+//     displayMissions(allMissions); // Affichage initial de toutes les missions
+//   })
+//   .catch(err => console.error("Erreur JSON:", err));
 
 /* -------------------------------------------------
    🧱 3. Fonction d’affichage des missions
@@ -246,55 +261,76 @@ if (contactForm) {
 /*-----------------------------------
 Ajouter des Missions
 ---------------------------------*/
-const missionsContainer1 = document.getElementById("mission-cards");
+"use strict";
+
+/* -------------------------------------------------
+   🛰️ 1. Sélection des éléments HTML
+------------------------------------------------- */
+//const missionsContainer = document.getElementById("mission-cards");
 const btnAdd = document.querySelector(".btn-add");
-const form = document.getElementById("addMissionForm");
+const addForm = document.getElementById("addMissionForm");
 
-let allMissions1 = [];
 
-// Exemple missions existantes
-allMissions1 = [
-  {
-    id: 1,
-    name: "Apollo 11",
-    agency: "NASA",
-    objective: "Premier alunissage habité",
-    launchDate: "1969-07-16",
-    image: "/Images/i4.png"
-  }
-];
 
-// Afficher les missions existantes
-displayMissions(allMissions1);
+/* -------------------------------------------------
+   🛰️ 2. Charger les missions
+------------------------------------------------- */
+const storedMissions = JSON.parse(localStorage.getItem("missions"));
 
-// 🔹 Afficher / cacher le formulaire
-btnAdd.addEventListener("click", () => {
-  if (form.style.display === "none") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-});
+if (storedMissions && storedMissions.length > 0) {
+  // Si missions déjà stockées → les afficher
+  allMissions = storedMissions;
+  displayMissions(allMissions);
+} else {
+  // Sinon → charger depuis le fichier JSON UNE SEULE FOIS
+  fetch("/js/missions.json")
+    .then(res => res.json())
+    .then(data => {
+      allMissions = data;
+      localStorage.setItem("missions", JSON.stringify(allMissions)); // sauvegarde
+      displayMissions(allMissions);
+    })
+    .catch(err => console.error("Erreur JSON:", err));
+}
 
-// 🔹 Fonction d’affichage
+/* -------------------------------------------------
+   🧱 3. Fonction d’affichage
+------------------------------------------------- */
 function displayMissions(missions) {
-  missionsContainer1.innerHTML = "";
+  missionsContainer.innerHTML = "";
+
+  if (missions.length === 0) {
+    missionsContainer.innerHTML = "<p>Aucune mission trouvée 🚫</p>";
+    return;
+  }
+
   missions.forEach(mission => {
     const card = document.createElement("div");
     card.classList.add("mission-card");
+
     card.innerHTML = `
-      <img src="${mission.image}" alt="${mission.name}" style="width:100px">
-      <h3>${mission.name}</h3>
+      <img src="${mission.image}" alt="${mission.name}">
+      <h2>${mission.name}</h2>
       <p><strong>Agence:</strong> ${mission.agency}</p>
       <p><strong>Objectif:</strong> ${mission.objective}</p>
       <p><strong>Date:</strong> ${mission.launchDate}</p>
     `;
-    missionsContainer1.appendChild(card);
+
+    missionsContainer.appendChild(card);
   });
 }
 
-// 🔹 Ajouter mission
-form.addEventListener("submit", (e) => {
+/* -------------------------------------------------
+   ➕ 4. Afficher / cacher le formulaire
+------------------------------------------------- */
+btnAdd.addEventListener("click", () => {
+  addForm.style.display = getComputedStyle(addForm).display === "none" ? "block" : "none";
+});
+
+/* -------------------------------------------------
+   📝 5. Ajouter une mission
+------------------------------------------------- */
+addForm.addEventListener("submit", e => {
   e.preventDefault();
 
   const newMission = {
@@ -303,12 +339,14 @@ form.addEventListener("submit", (e) => {
     agency: document.getElementById("missionAgency").value.trim(),
     objective: document.getElementById("missionObjective").value.trim(),
     launchDate: document.getElementById("missionDate").value,
-    image: document.getElementById("missionImage").value.trim() || "/Images/default.png",
+    image: document.getElementById("missionImage").value.trim() || "/Images/default.png"
   };
 
   allMissions.push(newMission);
-  displayMissions(allMissions);
+  localStorage.setItem("missions", JSON.stringify(allMissions));
 
-  form.reset();
-  form.style.display = "none"; // cacher le formulaire après ajout
+  displayMissions(allMissions);
+  addForm.reset();
+  addForm.style.display = "none";
 });
+//Fonction  de modification d'un mission

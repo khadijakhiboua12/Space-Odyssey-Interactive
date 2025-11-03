@@ -29,7 +29,7 @@ function displayMissions(missions) {
   missionsContainer.innerHTML = ""; // Vider le container
 
   if (missions.length === 0) {
-    missionsContainer.innerHTML = "<p>Aucune mission trouvée 🚫</p>";
+    missionsContainer.innerHTML = "<p>Aucune mission trouvée </p>";
     return;
   }
 
@@ -243,3 +243,72 @@ if (contactForm) {
     }
   });
 }
+/*-----------------------------------
+Ajouter des Missions
+---------------------------------*/
+const missionsContainer1 = document.getElementById("mission-cards");
+const btnAdd = document.querySelector(".btn-add");
+const form = document.getElementById("addMissionForm");
+
+let allMissions1 = [];
+
+// Exemple missions existantes
+allMissions1 = [
+  {
+    id: 1,
+    name: "Apollo 11",
+    agency: "NASA",
+    objective: "Premier alunissage habité",
+    launchDate: "1969-07-16",
+    image: "/Images/i4.png"
+  }
+];
+
+// Afficher les missions existantes
+displayMissions(allMissions1);
+
+// 🔹 Afficher / cacher le formulaire
+btnAdd.addEventListener("click", () => {
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+});
+
+// 🔹 Fonction d’affichage
+function displayMissions(missions) {
+  missionsContainer1.innerHTML = "";
+  missions.forEach(mission => {
+    const card = document.createElement("div");
+    card.classList.add("mission-card");
+    card.innerHTML = `
+      <img src="${mission.image}" alt="${mission.name}" style="width:100px">
+      <h3>${mission.name}</h3>
+      <p><strong>Agence:</strong> ${mission.agency}</p>
+      <p><strong>Objectif:</strong> ${mission.objective}</p>
+      <p><strong>Date:</strong> ${mission.launchDate}</p>
+    `;
+    missionsContainer1.appendChild(card);
+  });
+}
+
+// 🔹 Ajouter mission
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const newMission = {
+    id: allMissions.length + 1,
+    name: document.getElementById("missionName").value.trim(),
+    agency: document.getElementById("missionAgency").value.trim(),
+    objective: document.getElementById("missionObjective").value.trim(),
+    launchDate: document.getElementById("missionDate").value,
+    image: document.getElementById("missionImage").value.trim() || "/Images/default.png",
+  };
+
+  allMissions.push(newMission);
+  displayMissions(allMissions);
+
+  form.reset();
+  form.style.display = "none"; // cacher le formulaire après ajout
+});

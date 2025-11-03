@@ -1,167 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/Css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!--pour les icones-->
-    <link href="https://fonts.googleapis.com/css2?family=Port+Lligat+Slab&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=star" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Missions Spatiales</title>
+
+  <link rel="stylesheet" href="/Css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Port+Lligat+Slab&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="/Images/logo1.png">
-        </div>
-
-        <div class="header-content">
-            <div class="form">
-                <input class="search" type="text" placeholder="Search">
-                <img class="icone2" src="/Images/icon.png" alt="">
-            </div>
-
-            <div class="langage">
-                <select id="select1">
-                    <option>English</option>
-                    <option>Arabic</option>
-                    <option>Francais</option>
-                </select>
-            </div>
-
-            <div class="notification"><img src="/Images/notification.png">
-            </div>
-
-            <div class="profile"><img src="/Images/profile.png">
-            </div>
-
-        </div>
-    </header>
-
-    <navbar class="navbar">
-        <div class="list1">
-            <a href="#"><i class="fa-brands fa-instagram" id="a1"></i></a>
-            <a href="#"><i class="fa-brands fa-behance" id="a1"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter" id="a1"></i></a>
-        </div>
-
-        <div class="list2">
-            <div id="container">
-                <ul class="lien">
-                    <li><a href="/HTML/index.html" class="lien1">Home</a></li>
-                    <li><a href="/HTML/About.html" class="lien1">About</a></li>
-                    <li><a href="#" class="lien1">Mission</a></li>
-                    <li><a href="/HTML/planete.html" class="lien1">Planete</a></li>
-            </div>
-
-            <div class="cc">
-                <li><a href="/HTML/contact.html" id="contact">Contact US</a></li>
-            </div>
-            </ul>
-        </div>
-        </div>
-    </navbar>
-    <section class="hero">
-        <h1>Bienvenue dans l’espace </h1>
-        <p>Explore les missions interstellaires.</p>
-    </section>
-<section>
-  <div class="mission-controls">
-    <input type="text" class="search" placeholder="Rechercher une mission..." />
-
-    <select class="filter-agency">
-      <option value="">Toutes les agences</option>
-      <option value="NASA">NASA</option>
-      <option value="ESA">ESA</option>
-      <!-- Ajouter d'autres agences ici -->
-    </select>
-
-    <select class="filter-year">
-      <option value="">Toutes les années</option>
-      <option value="1969">1969</option>
-      <option value="1971">1971</option>
-      <!-- Ajouter d'autres années -->
-    </select>
-
-    <button class="btn-search">Rechercher</button>
-   <!-- Menu déroulant -->
-
-<!-- Conteneur où s'afficheront les noms des favoris -->
- 
-  <button id="btn-favoris">Mes Favoris</button>
-  <div id="mission_sec" class="favoris-container"></div>
-    <button class="btn-add">
-      <i class="fa-solid fa-plus"></i> Ajouter
-    </button>
-  </div>
-</section>
-    <section>
-        <div id="mission-cards">
-            <div id="favoris-cards"></div>
-        </div>
-    </section>
-    <!-- FOOTER -->
-    <div class="footer">
-        <div class="footer-content">
-            <div class="footer-top">
-                <div class="footer1">
-                    <a href="#">Legal</a>
-                    <a href="#">Terms of Service</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Cookies</a>
-                </div>
-
-                <div class="footer2">
-                    <a href="#">Information</a>
-                    <a href="#">FAQ</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Support</a>
-                </div>
-                <div class="footer3">
-                    <a href="#">company</a>
-                    <a href="#">About us</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Contact us</a>
-                </div>
-
-                <div class="footer4">
-                    <form>
-                        <label for="subscribe">Subscribe</label>
-                        <input type="text" id="subscribe" placeholder="Email adress" />
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="logo">
-                    <img src="/Images/logo1.png" alt="" />
-                </div>
-                <div class="footer-bottom-links">
-                    <ul>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Cookies</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <div class="social-links" style="background-color: black">
-                        <a href="https://www.instagram.com/nasa/?hl=en" target="_blank"><img
-                                src="/Images//white-linkedin.png" alt="" /></a>
-                        <a href="https://www.instagram.com/nasa/?hl=en" target="_blank"><img
-                                src="/Images/white-facebook.png" alt="" /></a>
-                        <a href="https://x.com/NASA" target="_blank"><img src="/Images/white-twitter1.png" alt="" /></a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- 🛰️ HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="/Images/logo1.png" alt="Logo" />
     </div>
-    <!-- FOOTER -->
-    </footer>
-    <script src="/js/main.js"></script>
-</body>
 
+    <div class="header-content">
+      <div class="form">
+        <input class="search" type="text" placeholder="Search" />
+        <img class="icone2" src="/Images/icon.png" alt="icon" />
+      </div>
+
+      <div class="langage">
+        <select id="select1">
+          <option>English</option>
+          <option>Arabic</option>
+          <option>Francais</option>
+        </select>
+      </div>
+
+      <div class="notification">
+        <img src="/Images/notification.png" alt="notif" />
+      </div>
+
+      <div class="profile">
+        <img src="/Images/profile.png" alt="profile" />
+      </div>
+    </div>
+  </header>
+
+  <!-- 🧭 NAVIGATION -->
+  <nav class="navbar">
+    <div class="list1">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-behance"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+
+    <ul class="lien">
+      <li><a href="/HTML/index.html" class="lien1">Home</a></li>
+      <li><a href="/HTML/About.html" class="lien1">About</a></li>
+      <li><a href="#" class="lien1">Mission</a></li>
+      <li><a href="/HTML/planete.html" class="lien1">Planète</a></li>
+      <li><a href="/HTML/contact.html" id="contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🌌 HERO -->
+  <section class="hero">
+    <h1>Bienvenue dans l’espace</h1>
+    <p>Explore les missions interstellaires.</p>
+  </section>
+
+  <!-- 🔍 CONTROLES DE RECHERCHE / AJOUT / FAVORIS -->
+  <section class="controls">
+    <div class="mission-controls">
+      <input type="text" class="search" placeholder="Rechercher une mission..." />
+
+      <select class="filter-agency">
+        <option value="">Toutes les agences</option>
+        <option value="NASA">NASA</option>
+        <option value="ESA">ESA</option>
+      </select>
+
+      <select class="filter-year">
+        <option value="">Toutes les années</option>
+        <option value="1969">1969</option>
+        <option value="1971">1971</option>
+      </select>
+
+      <button class="btn-search">Rechercher</button>
+      <button id="btn-favoris">Mes Favoris</button>
+      <button class="btn-add">
+        <i class="fa-solid fa-plus"></i> Ajouter Mission
+      </button>
+    </div>
+
+    <!-- 💫 Formulaire d'ajout -->
+    <form id="addMissionForm" style="display: none; margin-top: 20px;">
+      
+
+      <label>Nom:</label>
+      <input type="text" id="missionName" required />
+
+      <label>Agence:</label>
+      <input type="text" id="missionAgency" required />
+
+      <label>Objectif:</label>
+      <input type="text" id="missionObjective" required />
+
+      <label>Date de lancement:</label>
+      <input type="date" id="missionDate" required />
+
+      <label>Image (URL):</label>
+      <input type="text" id="missionImage" placeholder="/Images/i4.png" />
+
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- 🧡 Liste des favoris -->
+    <div id="mission_sec" class="favoris-container"></div>
+  </section>
+
+  <!-- 🪐 LISTE DES MISSIONS -->
+  <section class="missions">
+    <div id="mission-cards"></div>
+  </section>
+
+  <!-- 🌍 FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer1">
+          <a href="#">Legal</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookies</a>
+        </div>
+
+        <div class="footer2">
+          <a href="#">Information</a>
+          <a href="#">FAQ</a>
+          <a href="#">Blog</a>
+          <a href="#">Support</a>
+        </div>
+
+        <div class="footer3">
+          <a href="#">Company</a>
+          <a href="#">About us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact us</a>
+        </div>
+
+        <div class="footer4">
+          <form>
+            <label for="subscribe">Subscribe</label>
+            <input type="text" id="subscribe" placeholder="Email address" />
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="logo">
+          <img src="/Images/logo1.png" alt="logo" />
+        </div>
+
+        <div class="footer-bottom-links">
+          <ul>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="social-links" style="background-color: black">
+          <a href="https://www.instagram.com/nasa/?hl=en" target="_blank">
+            <img src="/Images/white-linkedin.png" alt="" />
+          </a>
+          <a href="https://www.instagram.com/nasa/?hl=en" target="_blank">
+            <img src="/Images/white-facebook.png" alt="" />
+          </a>
+          <a href="https://x.com/NASA" target="_blank">
+            <img src="/Images/white-twitter1.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
 </html>

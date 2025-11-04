@@ -916,7 +916,7 @@
     justify-content: center;
     gap: 60px;
 }
-/* //design de bare reecher en mission */
+
 /* ======================= */
 /* Section des filtres */
 /* ======================= */
@@ -997,12 +997,13 @@
   gap: 20px;
   padding: 30px;
    width: 90%;
+   background-color: white;
 
 }
 
 /* Style des cartes */
 .mission-card {
-  background: #ffffff;
+  background: white;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -1180,9 +1181,10 @@
 
 .btn-fav i {
     margin-right: 5px;
-} #btn-favoris {
+} 
+.btn-favoris {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #073463;
     color: white;
     border: none;
     border-radius: 6px;
@@ -1200,7 +1202,7 @@
   .favoris-menu {
     display: none;
     position: absolute;
-    background-color:white;
+    background-color:rgb(115, 7, 7);
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-top: 5px;
@@ -1346,4 +1348,53 @@
 
 .btn-delete:hover {
   background-color: #e60000;
+}
+
+/* Pour le model */
+/* Modal (fenêtre cachée par défaut) */
+.modal {
+  display: none; /* masqué par défaut */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenu du popup */
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Bouton de fermeture */
+.close {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+/* 
+Poubab */
+#favorisContainer {
+  display: none;
+  position: absolute; 
+  top: 60px;
+  /* right: 2px;  */
+  left:157px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000; 
+  padding: 10px;
+  border-radius: 8px;
 }

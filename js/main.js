@@ -82,81 +82,6 @@ function displayMissions(missions) {
   });
 }
 
-/* -------------------------------------------------
-   🔎 4. Fonction de recherche et filtrage avancé
-------------------------------------------------- */
-/* -------------------------------------------------
-   🔍 Fonction de recherche et filtrage avancé
-------------------------------------------------- */
-// function filterMissions() {
-//   const searchTerm = searchInput.value.toLowerCase();
-//   const agencyValue = filterAgency.value;
-//   const yearValue = filterYear.value;
-//   const typeValue = filterType ? filterType.value : "";
-
-//   // Commence par toutes les missions
-//   let filtered = [...allMissions];
-
-//   // 🧠 1. Filtrage par texte (nom, agence, objectif, date)
-//   if (searchTerm) {
-//     filtered = filtered.filter(mission =>
-//       mission.name.toLowerCase().includes(searchTerm) ||
-//       mission.agency.toLowerCase().includes(searchTerm) ||
-//       mission.objective.toLowerCase().includes(searchTerm) ||
-//       mission.launchDate.toLowerCase().includes(searchTerm)
-//     );
-//   }
-
-//   // 🛰️ 2. Filtrage par agence
-//   if (agencyValue) {
-//     filtered = filtered.filter(mission =>
-//       mission.agency.toLowerCase().includes(agencyValue.toLowerCase())
-//     );
-//   }
-
-//   // 📅 3. Filtrage par année
-//   if (yearValue) {
-//     filtered = filtered.filter(mission => {
-//       const missionYear = mission.launchDate.split("-")[0];
-//       return missionYear === yearValue;
-//     });
-//   }
-
-//   // 🧩 4. Filtrage par type (si présent)
-//   if (typeValue) {
-//     filtered = filtered.filter(mission =>
-//       mission.type && mission.type.toLowerCase() === typeValue.toLowerCase()
-//     );
-//   }
-
-//   // 🖥️ 5. Affichage des missions filtrées
-//   displayMissions(filtered);
-// }
-
-// /* -------------------------------------------------
-//    🎧 Événements : recherche et filtres
-// ------------------------------------------------- */
-
-// // 🔍 Recherche instantanée
-// if (searchInput) {
-//   searchInput.addEventListener("input", filterMissions);
-// }
-
-// // 🛰️ Changement d'agence
-// if (filterAgency) {
-//   filterAgency.addEventListener("change", filterMissions);
-// }
-
-// // 📅 Changement d'année
-// if (filterYear) {
-//   filterYear.addEventListener("change", filterMissions);
-// }
-
-// // 🧩 Changement de type
-// if (filterType) {
-//   filterType.addEventListener("change", filterMissions);
-// }
-
 const searchInputt = document.getElementById('searchInput');
 const agencyInputt = document.getElementById('agencyFilter');
 const yearInputt = document.getElementById('yearInput');
@@ -184,48 +109,7 @@ yearInputt.oninput = filterMissions;
 //subjectInputt.oninput = filterMissions;
 
 
-displayMissions(   allMissions);
-
-
-
-// 🖱️ Clic sur bouton "Rechercher"
-// const searchButton = document.querySelector("#searchButton");
-
-
-/* -------------------------------------------------
-   🔎 Fonction de filtrage combiné
-------------------------------------------------- */
-
-// // 🔍 Fonction de filtrage
-// function filterMissions() {
-//   const searchText = searchInput.value.toLowerCase();
-//   const agencyValue = filterAgency.value;
-//   const yearValue = filterYear.value;
-
-//   const filtered = allMissions.filter(mission => {
-//     const matchesText =
-//       mission.name.toLowerCase().includes(searchText) ||
-//       mission.agency.toLowerCase().includes(searchText) ||
-//       mission.objective.toLowerCase().includes(searchText) ||
-//       mission.launchDate.toLowerCase().includes(searchText);
-
-//     const matchesAgency = agencyValue === "" || mission.agency === agencyValue;
-//     const missionYear = mission.launchDate.split("-")[0];
-//     const matchesYear = yearValue === "" || missionYear === yearValue;
-
-//     return matchesText && matchesAgency && matchesYear;
-//   });
-
-//   displayMissions(filtered);
-// }
-
-// // 🧠 Cas 1 : recherche instantanée en tapant
-// searchInput.addEventListener("input", filterMissions);
-
-// // 🧠 Cas 2 : recherche combinée quand on clique sur le bouton
-// searchButton.addEventListener("click", filterMissions);
-
-
+displayMissions(allMissions);
 /* -------------------------------------------------
    ⭐ Gestion des favoris
 ------------------------------------------------- */
@@ -460,4 +344,58 @@ function deleteMission(id) {
     localStorage.setItem("missions", JSON.stringify(allMissions));
     displayMissions(allMissions);
   }
+}
+
+//Pour  favoris 
+const btnFavoris = document.querySelector(".btn-favoris");
+const favorisContainer = document.getElementById("favorisContainer");
+const favorisList = document.getElementById("favorisList");
+
+// عند الضغط على الزر Mes Favoris
+btnFavoris.addEventListener("click", () => {
+  const favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+
+  // إخفاء أو إظهار div
+  favorisContainer.style.display =
+    favorisContainer.style.display === "none" ? "block" : "none";
+
+  // إذا فارغ
+  if (favoris.length === 0) {
+    favorisList.innerHTML = "<p>Aucun favori trouvé</p>";
+    return;
+  }
+
+  // نحيد المحتوى القديم
+  favorisList.innerHTML = "";
+
+  // عرض كل مهمة مفضلة
+  favoris.forEach(fav => {
+    const card = document.createElement("div");
+    card.classList.add("mission-card");
+
+    card.innerHTML = `
+      <img src="${fav.image}" alt="${fav.name}">
+      <h3>${fav.name}</h3>
+      <p><strong>Agence:</strong> ${fav.agency}</p>
+      <p><strong>Objectif:</strong> ${fav.objective}</p>
+      <p><strong>Date:</strong> ${fav.launchDate}</p>
+      <button class="btn-remove-fav">Retirer</button>
+    `;
+
+    // زر حذف من المفضلات
+    const btnRemove = card.querySelector(".btn-remove-fav");
+    btnRemove.addEventListener("click", () => {
+      removeFromFavoris(fav.name);
+      card.remove(); // نحيدها من الواجهة
+    });
+
+    favorisList.appendChild(card);
+  });
+});
+
+// دالة تحذف من المفضلات
+function removeFromFavoris(name) {
+  let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+  favoris = favoris.filter(fav => fav.name !== name);
+  localStorage.setItem("favoris", JSON.stringify(favoris));
 }

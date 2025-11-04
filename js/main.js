@@ -5,7 +5,7 @@
 ------------------------------------------------- */
 const missionsContainer = document.getElementById("mission-cards");
 const searchInput = document.querySelector(".search");
-const searchButton = document.querySelector(".btn-search");
+const searchButton = document.querySelector("#searchButton");
 const filterAgency = document.querySelector(".filter-agency");
 const filterYear = document.querySelector(".filter-year");
 const filterType = document.querySelector(".filter-type");
@@ -61,7 +61,11 @@ function displayMissions(missions) {
      // Bouton Modifier
     const btnEdit = card.querySelector(".btn-edit");
     btnEdit.addEventListener("click", () => openEditForm(mission));
+    //Button supprimer
+    const btnDelete = card.querySelector(".btn-delete");
+    btnDelete.addEventListener("click", () => deleteMission(mission.id));
 
+      
     missionsContainer.appendChild(card);
   });
 }
@@ -69,38 +73,146 @@ function displayMissions(missions) {
 /* -------------------------------------------------
    🔎 4. Fonction de recherche et filtrage avancé
 ------------------------------------------------- */
+/* -------------------------------------------------
+   🔍 Fonction de recherche et filtrage avancé
+------------------------------------------------- */
+// function filterMissions() {
+//   const searchTerm = searchInput.value.toLowerCase();
+//   const agencyValue = filterAgency.value;
+//   const yearValue = filterYear.value;
+//   const typeValue = filterType ? filterType.value : "";
+
+//   // Commence par toutes les missions
+//   let filtered = [...allMissions];
+
+//   // 🧠 1. Filtrage par texte (nom, agence, objectif, date)
+//   if (searchTerm) {
+//     filtered = filtered.filter(mission =>
+//       mission.name.toLowerCase().includes(searchTerm) ||
+//       mission.agency.toLowerCase().includes(searchTerm) ||
+//       mission.objective.toLowerCase().includes(searchTerm) ||
+//       mission.launchDate.toLowerCase().includes(searchTerm)
+//     );
+//   }
+
+//   // 🛰️ 2. Filtrage par agence
+//   if (agencyValue) {
+//     filtered = filtered.filter(mission =>
+//       mission.agency.toLowerCase().includes(agencyValue.toLowerCase())
+//     );
+//   }
+
+//   // 📅 3. Filtrage par année
+//   if (yearValue) {
+//     filtered = filtered.filter(mission => {
+//       const missionYear = mission.launchDate.split("-")[0];
+//       return missionYear === yearValue;
+//     });
+//   }
+
+//   // 🧩 4. Filtrage par type (si présent)
+//   if (typeValue) {
+//     filtered = filtered.filter(mission =>
+//       mission.type && mission.type.toLowerCase() === typeValue.toLowerCase()
+//     );
+//   }
+
+//   // 🖥️ 5. Affichage des missions filtrées
+//   displayMissions(filtered);
+// }
+
+// /* -------------------------------------------------
+//    🎧 Événements : recherche et filtres
+// ------------------------------------------------- */
+
+// // 🔍 Recherche instantanée
+// if (searchInput) {
+//   searchInput.addEventListener("input", filterMissions);
+// }
+
+// // 🛰️ Changement d'agence
+// if (filterAgency) {
+//   filterAgency.addEventListener("change", filterMissions);
+// }
+
+// // 📅 Changement d'année
+// if (filterYear) {
+//   filterYear.addEventListener("change", filterMissions);
+// }
+
+// // 🧩 Changement de type
+// if (filterType) {
+//   filterType.addEventListener("change", filterMissions);
+// }
+
+const searchInputt = document.getElementById('searchInput');
+const agencyInputt = document.getElementById('agencyFilter');
+const yearInputt = document.getElementById('yearInput');
+const subjectInputt = document.getElementById('subjectInput');
+// Filtrer les missions
 function filterMissions() {
-  const searchText = searchInput.value.toLowerCase();
-  const agencyValue = filterAgency.value;
-  const yearValue = filterYear.value;
-  const typeValue = filterType ? filterType.value : "";
+  const search = searchInputt.value.toLowerCase();
+  const agency = agencyInputt.value.toLowerCase();
+  const year = yearInputt.value;
+  //const subject = subjectInputt.value.toLowerCase();
 
-  const filtered = allMissions.filter(mission => {
-    const matchesText =
-      mission.name.toLowerCase().includes(searchText) ||
-      mission.agency.toLowerCase().includes(searchText) ||
-      mission.objective.toLowerCase().includes(searchText) ||
-      mission.launchDate.toLowerCase().includes(searchText);
-
-    const matchesAgency = agencyValue === "" || mission.agency === agencyValue;
-
-    const missionYear = mission.launchDate.split("-")[0];
-    const matchesYear = yearValue === "" || missionYear === yearValue;
-
-    const matchesType = typeValue === "" || (mission.type && mission.type === typeValue);
-
-    return matchesText && matchesAgency && matchesYear && matchesType;
+  const filtered =   allMissions.filter(m => {
+    return (m.name.toLowerCase().includes(search)) &&
+           (!agency || m.agency.toLowerCase().includes(agency)) &&
+           (!year || m.launchDate.includes(year));
+          //  (!subject || m.objective.toLowerCase().includes(subject));
   });
 
   displayMissions(filtered);
 }
 
+searchInputt.oninput = filterMissions;
+agencyInputt.onchange = filterMissions;
+yearInputt.oninput = filterMissions;
+//subjectInputt.oninput = filterMissions;
+
+
+displayMissions(   allMissions);
+
+
+
+// 🖱️ Clic sur bouton "Rechercher"
+// const searchButton = document.querySelector("#searchButton");
+
+
 /* -------------------------------------------------
-   🎧 5. Événement : recherche au clic
+   🔎 Fonction de filtrage combiné
 ------------------------------------------------- */
-if (searchButton) {
-  searchButton.addEventListener("click", filterMissions);
-}
+
+// // 🔍 Fonction de filtrage
+// function filterMissions() {
+//   const searchText = searchInput.value.toLowerCase();
+//   const agencyValue = filterAgency.value;
+//   const yearValue = filterYear.value;
+
+//   const filtered = allMissions.filter(mission => {
+//     const matchesText =
+//       mission.name.toLowerCase().includes(searchText) ||
+//       mission.agency.toLowerCase().includes(searchText) ||
+//       mission.objective.toLowerCase().includes(searchText) ||
+//       mission.launchDate.toLowerCase().includes(searchText);
+
+//     const matchesAgency = agencyValue === "" || mission.agency === agencyValue;
+//     const missionYear = mission.launchDate.split("-")[0];
+//     const matchesYear = yearValue === "" || missionYear === yearValue;
+
+//     return matchesText && matchesAgency && matchesYear;
+//   });
+
+//   displayMissions(filtered);
+// }
+
+// // 🧠 Cas 1 : recherche instantanée en tapant
+// searchInput.addEventListener("input", filterMissions);
+
+// // 🧠 Cas 2 : recherche combinée quand on clique sur le bouton
+// searchButton.addEventListener("click", filterMissions);
+
 
 /* -------------------------------------------------
    ⭐ Gestion des favoris
@@ -156,13 +268,13 @@ fetch('/js/missions.json')
         div.style.justifyContent = "space-between";
         div.style.alignItems = "center";
         div.style.padding = "5px 10px";
-        div.style.borderBottom = "1px solid #ddd";
+        div.style.borderBottom = "1px solid #ffff";
 
         const p = document.createElement('span');
         p.textContent = fav.name;
 
         const btnRemove = document.createElement('button');
-        btnRemove.textContent = "Retirer";
+        btnRemove.textContent = "Supprimer";
         btnRemove.style.background = "none";
         btnRemove.style.border = "none";
         btnRemove.style.color = "red";
@@ -297,7 +409,7 @@ function openEditForm(mission) {
   editObjectiveInput.value = mission.objective;
   editDateInput.value = mission.launchDate;
   editImageInput.value = mission.image;
-}
+}  
 
 // 👉 Quand on valide la modification
 editForm.addEventListener("submit", e => {
@@ -327,8 +439,8 @@ editForm.addEventListener("submit", e => {
 });
 
 //Fonction pour la supprimer
-const btnDelete = card.querySelector(".btn-delete");
-btnDelete.addEventListener("click", () => deleteMission(mission.id));
+// const btnDelete = card.querySelector(".btn-delete");
+// btnDelete.addEventListener("click", () => deleteMission(mission.id));
 
 function deleteMission(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer cette mission ?")) {

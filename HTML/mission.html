@@ -31,10 +31,11 @@
                     <option>Francais</option>
                 </select>
             </div>
-
+<!-- 
             <div class="notification"><img src="/Images/notification.png">
-            </div>
-
+            </div> -->
+              <button id="btn-favoris">Mes Favoris</button>
+               <div id="mission_sec" class="favoris-container"></div>
             <div class="profile"><img src="/Images/profile.png">
             </div>
 
@@ -72,26 +73,36 @@
  <!-- -----------------------------------------------------------------------------les cartes --- --------------------------------------------------------------------------->
 <section>
   <div class="mission-controls">
-    <input type="text" class="search" placeholder="Rechercher une mission..." />
-    <select class="filter-agency">
+    <input type="text" class="search"id="searchInput" placeholder="Rechercher une mission..." />
+    <select class="filter-agency" id="agencyFilter">
       <option value="">Toutes les agences</option>
       <option value="NASA">NASA</option>
       <option value="ESA">ESA</option>
       <!-- Ajouter d'autres agences ici -->
     </select>
-    <select class="filter-year">
+
+    <select class="filter-year" id="yearInput">
       <option value="">Toutes les années</option>
       <option value="1969">1969</option>
       <option value="1971">1971</option>
       <!-- Ajouter d'autres années -->
     </select>
-    <button id="searchButton">Rechercher</button>
+    <Select class="subjectInput" id="subjectInput">
+          <option value="">Toutes les objectives</option>
+          <option value="Premier alunissage habité">Premier alunissage habité</option>
+          <option value="Exploration du système solaire externe">Exploration du système solaire externe</option>
+          <option value=" Étude de la comète 67P/Churyumov-Gerasimenko"> Étude de la comète 67P/Churyumov-Gerasimenko</option>
+          <option value="Exploration du cratère Gale sur Mars">Exploration du cratère Gale sur Mars</option>
+          <option value="Test du système de lancement SLS et d’Orion">Test du système de lancement SLS et d’Orion</option>
+          <option value=" Observation de l’univers primitif"> Observation de l’univers primitif</option>
+          <option value=" Exploration de la planète Mercure"> Exploration de la planète Mercure</option>
+    </select>
+    <!-- <button id="searchButton">Rechercher</button> -->
    
 
 <!-- Conteneur où s'afficheront les noms des favoris -->
  
-  <button id="btn-favoris">Mes Favoris</button>
-  <div id="mission_sec" class="favoris-container"></div>
+ 
     <button class="btn-add">
       <i class="fa-solid fa-plus"></i> Ajouter Mession</button>
   </div>
@@ -122,7 +133,7 @@
         </div>
     </section>
 
-    <div id="mission-cards"></div>
+    <!-- <div id="mission-cards"></div> -->
 
 <!-- Formulaire de modification (hidden par défaut) -->
 <form id="editMissionForm" style="display:none; margin-top:20px;">
@@ -142,7 +153,7 @@
   <label>Image (URL):</label>
   <input type="text" id="editMissionImage" placeholder="/Images/default.png" />
 
-  <button type="submit">Save</button>
+  <button type="submit">Enregistre</button>
 </form>
 
 

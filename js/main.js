@@ -15,12 +15,24 @@ let allMissions = []; // 📋 Stockage global de toutes les missions
 /* -------------------------------------------------
    🛰️ 2. Charger les missions depuis le JSON
 ------------------------------------------------- */
-fetch("/js/missions.json")
-  .then(res => res.json()) .then(data => {
-    allMissions = data;
-    displayMissions(allMissions); // Affichage initial de toutes les missions
-  })
-  .catch(err => console.error("Erreur JSON:", err));
+// 🛰️ Charger les missions une seule fois correctement
+const savedMissions = JSON.parse(localStorage.getItem("missions"));
+
+if (savedMissions && savedMissions.length > 0) {
+  // Si des missions existent déjà dans localStorage → on les affiche
+  allMissions = savedMissions;
+  displayMissions(allMissions);
+} else {
+  // Sinon on charge depuis le JSON pour la première fois
+  fetch("/js/missions.json")
+    .then(res => res.json())
+    .then(data => {
+      allMissions = data;
+      localStorage.setItem("missions", JSON.stringify(allMissions));
+      displayMissions(allMissions);
+    })
+    .catch(err => console.error("Erreur JSON:", err));
+}
 
 /* -------------------------------------------------
    🧱 3. Fonction d’affichage des missions

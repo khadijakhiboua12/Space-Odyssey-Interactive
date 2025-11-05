@@ -1,14 +1,53 @@
-# SpaceX Exploration Website
+🛰️ Space-Odyssey-Interactive — README (Projet scolaire)
+🎯 Contexte du projet
 
-## Contexte du Projet
+Ce projet a été réalisé dans le cadre d’un travail scolaire.
+J’ai repris un site web que j’avais déjà créé, puis je l’ai amélioré sur toutes les pages en utilisant HTML et CSS.
 
-Ce projet consiste à transformer un site web statique (One-Page) en un site multi-pages interconnectées. Le thème central du site est l'exploration spatiale, mettant en avant SpaceX, ses fusées, et ses missions emblématiques. L'objectif est de présenter de manière immersive et attrayante le contenu scientifique, technologique et visuel lié à l'exploration spatiale, avec une attention particulière aux missions de SpaceX et à ses innovations.
+🚀 Fonctionnalités principales
 
-## Objectif du Projet
+Ajout d’un système de filtres :
 
-L'objectif est de créer un site web structuré avec plusieurs pages interconnectées, en développant les sections suivantes :
+Filtrer les missions par agence.
 
-- **Page d'accueil (Home)** : Introduction au thème “Space Discovery” avec des visuels immersifs et engageants.
-- **Page “Missions”** : Présentation des missions emblématiques de SpaceX comme Falcon 9, Starship, Crew Dragon, et Starlink.
-- **Page “Planets”** : Détails sur les innovations techniques de SpaceX, y compris la réutilisation des fusées, la propulsion et l’ingénierie avancée.
-- **Page “Contact”** : Formulaire complet pour permettre aux utilisateurs de rejoindre la communauté des passionnés de SpaceX.
+Filtrer les missions par année de lancement.
+
+Filtrer les missions favorites.
+
+Ajout d’un système de favoris :
+
+Un bouton permet d’ajouter une mission aux favoris.
+
+Un autre bouton affiche une petite fenêtre (mini page) contenant les missions favorites.
+
+Ajout d’une barre de recherche permettant de rechercher par nom, contenu, ou agence.
+
+Mise en place d’un CRUD complet (Create, Read, Update, Delete) :
+
+Ajouter de nouvelles missions.
+
+Consulter la liste des missions.
+
+Modifier ou annuler la modification d’une mission.
+
+Supprimer une mission.
+
+Dans la page Contact, j’ai ajouté :
+
+Une validation d’email.
+
+Une validation de numéro.
+
+Une vérification que tous les champs sont remplis avant l’envoi.
+
+🧰 Technologies utilisées
+
+HTML5
+
+CSS3
+
+JavaScript (DOM + localStorage)
+
+🌐 Objectif
+
+Offrir une expérience interactive et dynamique autour de l’exploration spatiale et des missions de SpaceX, avec un site plus structuré, immersif et fonctionnel.

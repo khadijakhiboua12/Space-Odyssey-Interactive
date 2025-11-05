@@ -56,7 +56,7 @@ function displayMissions(missions) {
       <p><strong>Agency:</strong> ${mission.agency}</p>
       <p><strong>Objective:</strong> ${mission.objective}</p>
       <p><strong>Launch Date:</strong> ${mission.launchDate}</p>
-      <p><strong>Type:</strong> ${mission.type || "N/A"}</p>
+     
       <button class="btn-fav">
         <i class="${isFav ? "fa-solid fa-star" : "fa-regular fa-star"}"></i>
         ${isFav ? "Favori" : "Ajouter aux favoris"}
@@ -189,70 +189,7 @@ fetch('/js/missions.json')
   })
   .catch(err => console.error("Erreur JSON :", err));
 
-/* -------------------------------------------------
-   Validation du formulaire
-------------------------------------------------- */
-const contactForm = document.getElementById("contactForm");
 
-if (contactForm) {
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    let isValid = true;
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const phone = document.getElementById("phone");
-    const date = document.getElementById("date");
-    const message = document.getElementById("message");
-
-    const nameRegex = /^[A-Za-zÀ-ÿ\s'-]{2,}$/;
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    const phoneRegex = /^(\+?\d{1,3}[- ]?)?\d{9,}$/;
-    const dateRegex = /^(0[1-9]|[12][0-9]|3[01])[\/\-](0[1-9]|1[0-2])[\/\-]\d{4}$/;
-
-    function setError(input, message) {
-      const errorMsg = input.parentElement.querySelector(".error-message");
-      errorMsg.textContent = message;
-      input.classList.add("invalid");
-      input.classList.remove("valid");
-      isValid = false;
-    }
-
-    function setSuccess(input) {
-      const errorMsg = input.parentElement.querySelector(".error-message");
-      errorMsg.textContent = "";
-      input.classList.add("valid");
-      input.classList.remove("invalid");
-    }
-
-    // Validation
-    if (name.value.trim() === "") setError(name, "Le nom est requis");
-    else if (!nameRegex.test(name.value.trim())) setError(name, "Le nom n'est pas valide");
-    else setSuccess(name);
-
-    if (email.value.trim() === "") setError(email, "L'email est requis");
-    else if (!emailRegex.test(email.value.trim())) setError(email, "Format d'email invalide");
-    else setSuccess(email);
-
-    if (phone.value.trim() === "") setError(phone, "Le téléphone est requis");
-    else if (!phoneRegex.test(phone.value.trim())) setError(phone, "Format du téléphone invalide");
-    else setSuccess(phone);
-
-    if (date.value.trim() === "") setError(date, "La date est requise");
-    else if (!dateRegex.test(date.value.trim())) setError(date, "Format attendu : JJ/MM/AAAA");
-    else setSuccess(date);
-
-    if (message.value.trim() === "") setError(message, "Le message est requis");
-    else if (message.value.trim().length < 10) setError(message, "Le message doit contenir au moins 10 caractères");
-    else setSuccess(message);
-
-    if (isValid) {
-      alert("Formulaire envoyé avec succès !");
-      contactForm.reset();
-      document.querySelectorAll("input, textarea").forEach(el => el.classList.remove("valid"));
-    }
-  });
-}
 /*-----------------------------------
 Ajouter des Missions
 ---------------------------------*/

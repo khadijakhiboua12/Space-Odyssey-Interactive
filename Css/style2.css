@@ -361,130 +361,96 @@ position:absolute;
 
 
 
-
-/* ======== Style général ======== */
-.contenu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: "Poppins", sans-serif;
-  color: #fff;
-  padding: 40px 0;
+/* ======= Formulaire Contact ======= */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 0;
 }
 
-/* ======== Conteneur principal ======== */
-.container {
-  background: #fff;
-  color: #222;
-  width: 90%;
-  max-width: 500px;
-  padding: 30px 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease;
-}
-
-.container:hover {
-  transform: translateY(-5px);
-}
-
-/* ======== Titre ======== */
-.container h1 {
+h2 {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.8em;
+  margin-top: 30px;
   color: #333;
 }
 
-/* ======== Champs du formulaire ======== */
-.form-group {
-  margin-bottom: 20px;
-  position: relative;
+form#contactForm {
+  max-width: 500px;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
 }
 
-label {
+form#contactForm label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-weight: 600;
-  color: #222;
+  color: #555;
 }
 
-input,
-textarea {
+form#contactForm input,
+form#contactForm textarea {
   width: 100%;
   padding: 10px 12px;
-  border-radius: 8px;
-  border: 2px solid #ccc;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 15px;
   transition: all 0.3s ease;
+}
+
+form#contactForm input:focus,
+form#contactForm textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74,144,226,0.4);
   outline: none;
 }
 
-/* Focus visuel */
-input:focus,
-textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-/* ======== États valides / invalides ======== */
-input.valid,
-textarea.valid {
-  border-color: #28a745;
-  background-color: #eafaf1;
-}
-
-input.invalid,
-textarea.invalid {
-  border-color: #dc3545;
-  background-color: #ffeaea;
-}
-
-/* ======== Message d’erreur ======== */
-.error-message {
-  color: #dc3545;
-  font-size: 13px;
-  margin-top: 4px;
-  display: block;
-  height: 16px;
-}
-
-/* ======== Bouton ======== */
-button {
+form#contactForm button {
   width: 100%;
-  background: #007bff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
   padding: 12px;
+  background-color: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background: #0056b3;
-  transform: scale(1.03);
+form#contactForm button:hover {
+  background-color: #357ABD;
 }
 
-button:active {
-  transform: scale(0.98);
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: block;
 }
 
-/* ======== Responsive ======== */
+.success {
+  color: #27ae60;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Pour textarea */
+form#contactForm textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Pour rendre responsive */
 @media (max-width: 600px) {
-  .container {
-    padding: 25px;
-  }
-
-  .container h1 {
-    font-size: 1.5em;
-  }
-
-  input,
-  textarea {
-    font-size: 14px;
+  form#contactForm {
+    padding: 20px;
+    margin: 20px;
   }
 }

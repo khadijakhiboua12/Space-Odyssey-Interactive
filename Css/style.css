@@ -137,23 +137,7 @@
     font-size: 20px;
 }
 
-/* .btn1 {
-    background-color: white;
-    z-index: 1;
-    position: absolute;
-    width: 110px;
-    height: 40px;
-    margin-left: 700px;
-    margin-top: 200px;
-    border: 1px rgba(128, 128, 128, 0.744);
-    border-radius: 15px 15px 15px 15px;
-    background-color: gray;
 
-}
-
-.btn1 a {
-    color: black;
-} */
 
 .btn1 {
     display: inline-block;
@@ -400,10 +384,9 @@
 
 /*Pour la section 4*/
 .section4 {
-    /* display:flex;
-    justify-content: center; */
+    
     height: 300px;
-    /* margin-left: 200px; */
+    
     width: 68%;
     position: relative;
     margin-top: 400px;
@@ -532,14 +515,7 @@
     margin-right: 13%;
 }
 
-/* .btn6 {
-    margin-left: 200px;
-    border: 2px black;
-    border-radius: 10px 10px;
-    width: 97px;
-    height: 40px;
 
-} */
 
 .btn6 {
     border: 1px solid rgba(0, 0, 0, 0.4);
@@ -732,8 +708,7 @@
 }
 
 .section7 {
-    /* margin-top:10px; */
-    /* background-color: aquamarine; */
+   
     height: 700px;
     display: flex;
     justify-content: space-between;
@@ -746,8 +721,7 @@
     height: 240px;
     margin-left: 10%;
     margin-top: 80px;
-    /* width: 300px;
-    height: 240px; */
+  
 }
 
 .parag2 {
@@ -823,7 +797,7 @@
     margin-right: 20px;
     margin: auto;
     border-radius: 10px;
-    /*  kifax an7yd espcace ? */
+  
 }
 
 .parag44 p {
@@ -1109,10 +1083,10 @@
   font-size: 18px;
 }
 
-/* 🌟 Style général du formulaire */
+/* Style général du formulaire */
 #addMissionForm {
   display: none;
-  position: fixed; /* باش يطلع فوق الصفحة */
+  position: fixed; 
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1123,7 +1097,7 @@
   max-width: 400px;
   width: 90%;
   font-family: Arial, sans-serif;
-  z-index: 1000; /* باش يطلع فوق جميع العناصر */
+  z-index: 1000; 
 }
 
 
@@ -1135,7 +1109,7 @@
   color: #333;
 }
 
-/* ✏️ Inputs */
+/*  Inputs */
 #addMissionForm input {
   width: 100%;
   padding: 8px;
@@ -1146,7 +1120,7 @@
   box-sizing: border-box;
 }
 
-/* 🔘 Bouton Add */
+/*  Bouton Add */
 #addMissionForm button[type="submit"] {
   margin-top: 15px;
   background-color: #05e235;
@@ -1176,7 +1150,7 @@
   background-color: #28a745;
 }
 
-/* 🧭 Pour le bouton Ajouter principal */
+/* Pour le bouton Ajouter principal */
 .btn-add {
   display: flex;
   align-items: center;
@@ -1261,7 +1235,7 @@
   }
 
   /* //pour la modification */
-  /* 🎯 Formulaire de modification */
+  /*  Formulaire de modification */
 #editMissionForm {
  display: none;
   position: fixed; 
@@ -1421,8 +1395,7 @@ Poubab */
   display: none;
   position: absolute; 
   top: 60px;
-  /* right: 2px;  */
-  left:157px;
+ right:1px;
   width: 300px;
   max-height: 400px;
   overflow-y: auto;

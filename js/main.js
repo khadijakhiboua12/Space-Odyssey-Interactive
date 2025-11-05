@@ -10,20 +10,18 @@ const filterAgency = document.querySelector(".filter-agency");
 const filterYear = document.querySelector(".filter-year");
 const filterType = document.querySelector(".filter-type");
 
-let allMissions = []; // 📋 Stockage global de toutes les missions
+let allMissions = []; 
 
 /* -------------------------------------------------
-   🛰️ 2. Charger les missions depuis le JSON
+    2. Charger les missions depuis le JSON
 ------------------------------------------------- */
-// 🛰️ Charger les missions une seule fois correctement
-const savedMissions = JSON.parse(localStorage.getItem("missions"));
 
+const savedMissions = JSON.parse(localStorage.getItem("missions"));
 if (savedMissions && savedMissions.length > 0) {
-  // Si des missions existent déjà dans localStorage → on les affiche
   allMissions = savedMissions;
   displayMissions(allMissions);
 } else {
-  // Sinon on charge depuis le JSON pour la première fois
+  
   fetch("/js/missions.json")
     .then(res => res.json())
     .then(data => {
@@ -35,10 +33,10 @@ if (savedMissions && savedMissions.length > 0) {
 }
 
 /* -------------------------------------------------
-   🧱 3. Fonction d’affichage des missions
+    3. Fonction d’affichage des missions
 ------------------------------------------------- */
 function displayMissions(missions) {
-  missionsContainer.innerHTML = ""; // Vider le container
+  missionsContainer.innerHTML = ""; 
 
   if (missions.length === 0) {
     missionsContainer.innerHTML = "<p>Aucune mission trouvée </p>";
@@ -85,19 +83,17 @@ function displayMissions(missions) {
 const searchInputt = document.getElementById('searchInput');
 const agencyInputt = document.getElementById('agencyFilter');
 const yearInputt = document.getElementById('yearInput');
-const subjectInputt = document.getElementById('subjectInput');
-// Filtrer les missions
+const subjectInput = document.getElementById('subjectInput');
 function filterMissions() {
   const search = searchInputt.value.toLowerCase();
   const agency = agencyInputt.value.toLowerCase();
   const year = yearInputt.value;
-  //const subject = subjectInputt.value.toLowerCase();
-
+  const subject = subjectInput.value.toLowerCase();
   const filtered =   allMissions.filter(m => {
     return (m.name.toLowerCase().includes(search)) &&
            (!agency || m.agency.toLowerCase().includes(agency)) &&
-           (!year || m.launchDate.includes(year));
-          //  (!subject || m.objective.toLowerCase().includes(subject));
+           (!year || m.launchDate.includes(year)) &&
+          (!subject || m.objective.toLowerCase().includes(subject));
   });
 
   displayMissions(filtered);
@@ -106,12 +102,12 @@ function filterMissions() {
 searchInputt.oninput = filterMissions;
 agencyInputt.onchange = filterMissions;
 yearInputt.oninput = filterMissions;
-//subjectInputt.oninput = filterMissions;
+subjectInput.oninput = filterMissions;
 
 
 displayMissions(allMissions);
 /* -------------------------------------------------
-   ⭐ Gestion des favoris
+    Gestion des favoris
 ------------------------------------------------- */
 function toggleFavorite(mission, btnElement) {
   let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
@@ -131,7 +127,7 @@ function toggleFavorite(mission, btnElement) {
 }
 
 /* -------------------------------------------------
-   💾 Affichage des favoris dans une autre section
+    Affichage des favoris dans une autre section
 ------------------------------------------------- */
 fetch('/js/missions.json')
   .then(res => res.json())
@@ -194,7 +190,7 @@ fetch('/js/missions.json')
   .catch(err => console.error("Erreur JSON :", err));
 
 /* -------------------------------------------------
-   📝 Validation du formulaire
+   Validation du formulaire
 ------------------------------------------------- */
 const contactForm = document.getElementById("contactForm");
 
@@ -262,13 +258,13 @@ Ajouter des Missions
 ---------------------------------*/
 const btnAdd = document.querySelector(".btn-add");
 const addForm = document.getElementById("addMissionForm")
+const btnCancel=document.getElementById("btnCancel");
 btnAdd.addEventListener("click", () => {
   addForm.style.display = getComputedStyle(addForm).display === "none" ? "block" : "none";
 });
 
 addForm.addEventListener("submit", e => {
   e.preventDefault();
-
   const newMission = {
     id: allMissions.length + 1,
     name: document.getElementById("missionName").value.trim(),
@@ -278,16 +274,22 @@ addForm.addEventListener("submit", e => {
     image: document.getElementById("missionImage").value.trim() || "/Images/default.png"
   };
 
+
   allMissions.push(newMission);
   localStorage.setItem("missions", JSON.stringify(allMissions));
   displayMissions(allMissions);
 
   addForm.reset();
   addForm.style.display = "none";
-});
+  });
+  btnCancel.addEventListener("click",()=>{
+        addForm.reset();
+        addForm.style.display="none";
+  });
+
 
 //Fonction de modification
-// Sélection des éléments du formulaire d'édition
+
 const editForm = document.getElementById("editMissionForm");
 const editIdInput = document.getElementById("editMissionId");
 const editNameInput = document.getElementById("editMissionName");
@@ -295,8 +297,9 @@ const editAgencyInput = document.getElementById("editMissionAgency");
 const editObjectiveInput = document.getElementById("editMissionObjective");
 const editDateInput = document.getElementById("editMissionDate");
 const editImageInput = document.getElementById("editMissionImage");
+const btnCancel1=document.getElementById("btnCancelEdit");
 
-// 👉 Fonction pour ouvrir le formulaire avec les infos de la mission
+// Fonction pour ouvrir le formulaire avec les infos de la mission
 function openEditForm(mission) {
   editForm.style.display = "block"; // afficher le formulaire
   editIdInput.value = mission.id;
@@ -307,13 +310,13 @@ function openEditForm(mission) {
   editImageInput.value = mission.image;
 }  
 
-// 👉 Quand on valide la modification
+//  Quand on valide la modification
 editForm.addEventListener("submit", e => {
   e.preventDefault();
 
   const id = parseInt(editIdInput.value);
   const index = allMissions.findIndex(m => m.id === id);
-  if (index === -1) return; // Si mission non trouvée
+  if (index === -1) return; 
 
   // Mettre à jour les données
   allMissions[index] = {
@@ -329,14 +332,15 @@ editForm.addEventListener("submit", e => {
   localStorage.setItem("missions", JSON.stringify(allMissions));
   displayMissions(allMissions);
 
-  // Réinitialiser et masquer le formulaire
+
   editForm.reset();
   editForm.style.display = "none";
 });
-
+ btnCancel1.addEventListener("click",()=>{
+        editForm.reset();
+       editForm.style.display="none";
+  });
 //Fonction pour la supprimer
-// const btnDelete = card.querySelector(".btn-delete");
-// btnDelete.addEventListener("click", () => deleteMission(mission.id));
 
 function deleteMission(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer cette mission ?")) {
@@ -346,33 +350,21 @@ function deleteMission(id) {
   }
 }
 
-//Pour  favoris 
 const btnFavoris = document.querySelector(".btn-favoris");
 const favorisContainer = document.getElementById("favorisContainer");
 const favorisList = document.getElementById("favorisList");
-
-// عند الضغط على الزر Mes Favoris
 btnFavoris.addEventListener("click", () => {
-  const favoris = JSON.parse(localStorage.getItem("favoris")) || [];
-
-  // إخفاء أو إظهار div
+const favoris = JSON.parse(localStorage.getItem("favoris")) || [];
   favorisContainer.style.display =
     favorisContainer.style.display === "none" ? "block" : "none";
-
-  // إذا فارغ
   if (favoris.length === 0) {
     favorisList.innerHTML = "<p>Aucun favori trouvé</p>";
     return;
   }
-
-  // نحيد المحتوى القديم
   favorisList.innerHTML = "";
-
-  // عرض كل مهمة مفضلة
   favoris.forEach(fav => {
     const card = document.createElement("div");
     card.classList.add("mission-card");
-
     card.innerHTML = `
       <img src="${fav.image}" alt="${fav.name}">
       <h3>${fav.name}</h3>
@@ -381,19 +373,18 @@ btnFavoris.addEventListener("click", () => {
       <p><strong>Date:</strong> ${fav.launchDate}</p>
       <button class="btn-remove-fav">Retirer</button>
     `;
-
-    // زر حذف من المفضلات
     const btnRemove = card.querySelector(".btn-remove-fav");
     btnRemove.addEventListener("click", () => {
       removeFromFavoris(fav.name);
-      card.remove(); // نحيدها من الواجهة
+      card.remove(); 
+      displayMissions(allMissions);
     });
 
     favorisList.appendChild(card);
   });
 });
 
-// دالة تحذف من المفضلات
+
 function removeFromFavoris(name) {
   let favoris = JSON.parse(localStorage.getItem("favoris")) || [];
   favoris = favoris.filter(fav => fav.name !== name);

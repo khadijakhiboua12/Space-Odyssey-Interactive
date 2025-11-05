@@ -208,7 +208,7 @@ addForm.addEventListener("submit", e => {
     agency: document.getElementById("missionAgency").value.trim(),
     objective: document.getElementById("missionObjective").value.trim(),
     launchDate: document.getElementById("missionDate").value,
-    image: document.getElementById("missionImage").value.trim() || "/Images/default.png"
+    image: document.getElementById("missionImage").value.trim() || "../Images/default.png"
   };
 
 
@@ -262,7 +262,7 @@ editForm.addEventListener("submit", e => {
     agency: editAgencyInput.value.trim(),
     objective: editObjectiveInput.value.trim(),
     launchDate: editDateInput.value,
-    image: editImageInput.value.trim() || "/Images/default.png"
+    image: editImageInput.value.trim() || "../Images/default.png"
   };
 
   // Sauvegarder et recharger

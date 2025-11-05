@@ -22,7 +22,7 @@ if (savedMissions && savedMissions.length > 0) {
   displayMissions(allMissions);
 } else {
   
-  fetch("/js/missions.json")
+  fetch("missions.json")
     .then(res => res.json())
     .then(data => {
       allMissions = data;
@@ -129,7 +129,7 @@ function toggleFavorite(mission, btnElement) {
 /* -------------------------------------------------
     Affichage des favoris dans une autre section
 ------------------------------------------------- */
-fetch('/js/missions.json')
+fetch('missions.json')
   .then(res => res.json())
   .then(missions => {
     const container = document.getElementById('mission_sec');
